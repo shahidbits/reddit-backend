@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="HOME_LOG" value="/Users/m0s05qz/log/redditt/app.log"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <Appenders>
+        <File name="File"
+              fileName="${HOME_LOG}">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+
+    <!--    <appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
+    <!--        <file>${HOME_LOG}</file>-->
+    <!--        <append>true</append>-->
+    <!--        <immediateFlush>true</immediateFlush>-->
+    <!--        <encoder>-->
+    <!--            <pattern>%d %p %c{1.} [%t] %m%n</pattern>-->
+    <!--        </encoder>-->
+    <!--    </appender>-->
+
+    <!--    <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <file>${HOME_LOG}</file>-->
+
+    <!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+    <!--            <fileNamePattern>logs/archived/app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>-->
+    <!--            &lt;!&ndash; each archived file, size max 10MB &ndash;&gt;-->
+    <!--            <maxFileSize>10MB</maxFileSize>-->
+    <!--            &lt;!&ndash; total size of all archive files, if total size > 20GB, it will delete old archived file &ndash;&gt;-->
+    <!--            <totalSizeCap>20GB</totalSizeCap>-->
+    <!--            &lt;!&ndash; 60 days to keep &ndash;&gt;-->
+    <!--            <maxHistory>60</maxHistory>-->
+    <!--            &lt;!&ndash; compress the archived files &ndash;&gt;-->
+    <!--            <fileNamePattern>logs/archived/app.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>-->
+    <!--        </rollingPolicy>-->
+
+    <!--        <encoder>-->
+    <!--            <pattern>%d %p %c{1.} [%t] %m%n</pattern>-->
+    <!--        </encoder>-->
+    <!--    </appender>-->
+
+    <logger name="com.redditt" level="debug" additivity="false">
+        <appender-ref ref="FILE-ROLLING"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="FILE-ROLLING"/>
+    </root>
+
+
+</configuration>
